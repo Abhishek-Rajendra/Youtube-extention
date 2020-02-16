@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="sentiment.js"></script>
+  <script src="js/canvas.js"></script>
+  <script src="popup.js"></script>
+  <script src="js/jquery-2.0.3.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="css/custom.css" rel="stylesheet" media="screen">
+</head>
+
+<body style='height: 500px; width: 400px; background-color: #f2f2f2;'>
+
+  <!-- Search Bar -->
+  <div id="chartContainer" style="height: 370px; width: 200px;"></div>
+<div style='padding-bottom: 20px;'>
+  <div class="wrap">
+    <div class="search" style='width: 100%;
+                              position: relative;
+                              display: flex; padding: 10px;'>
+
+       <input type="text" id="word" class="searchTerm" placeholder="Search video by Keyword!" style='width: 100%;
+       border: 1px solid #00B4CC;
+       border-right: none;
+       padding: 10px;
+       padding-left: 10px;
+       font-size: 17.5px;
+       font-family: "Source Sans Pro";
+       font-weight: 550;
+       color: black;
+       height: 41px;
+       border-radius: 10px 0 0 10px;
+       outline: none;
+       '>
+
+       <button  id="submit" type="submit" class="searchButton" style='width: 40px;
+       height: 41px;
+       border: 1px solid #00B4CC;
+       background: #00B4CC;
+       text-align: center;
+       color: #fff;
+       border-radius: 0 10px 10px 0;
+       cursor: pointer;
+       font-size: 20px;'>
+         <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div style='padding-left: 10px; padding-right: 10px;'>
+  <ul class="nav nav-pills">
+    <li class="active"><a data-toggle="pill" href="#timestamps">Timestamps</a></li>
+    <li><a data-toggle="pill" href="#sentiment">Sentiment</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="timestamps" class="tab-pane fade in active">
+      <h3>Timestamps</h3>
+      <p>Fuckin' timestamps here!</p>
+    </div>
+    <div id="sentiment" class="tab-pane fade">
+      <h3>Sentiment</h3>
+      <p>Sentiment here!</p>
+    </div>
+  </div>
+</div>
+
+    <!-- <input type="text" id="word"><br> -->
+    <!-- <input id="submit" type="submit" value="Submit"> -->
+
+    <!-- <form>
+    <input type="text" id="word"><br>
+    <input id="submit" type="submit" value="Submit">
+  </form> -->
+
+    <!-- <button id="changeColor1"></button> -->
+
+
+  </body>
+</html>

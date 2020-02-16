@@ -1,0 +1,38 @@
+{
+  "name": "SnapSeek",
+  "version": "1.0",
+  "description": "A lightweight AI-powered Google Chrome extension, which annotates YouTube videos to provide timestamps of keyword occurrences, and provides Sentiment Analysis of user-provided queries",
+  "permissions": ["http://10.196.8.192:5002/*","http://10.196.8.192:5001/*","http://10.196.8.192:5000/*","tabs","activeTab","declarativeContent", "storage"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/SnapSeek.png",
+      "32": "images/SnapSeek.png",
+      "48": "images/SnapSeek.png",
+      "128": "images/SnapSeek.png"
+    }
+  },
+  "icons": {
+    "16": "images/SnapSeek.png",
+    "32": "images/SnapSeek.png",
+    "48": "images/SnapSeek.png",
+    "128": "images/SnapSeek.png"
+  },
+  "commands": {
+    "refresh_url": {
+        "suggested_key": {
+            "default": "Alt + R",
+            "mac": "Alt+R"
+        },
+        "description": "Refresh the defined url"
+    }
+},
+  "options_page": "options.html",
+  "manifest_version": 2
+
+
+}

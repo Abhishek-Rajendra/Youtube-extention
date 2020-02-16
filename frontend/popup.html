@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <script src="sentiment.js"></script> -->
+  <script src="js/canvas.js"></script>
+  <!-- <script src="popup.js"></script> -->
+  <script src="js/jquery-2.0.3.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="css/custom.css" rel="stylesheet" media="screen">
+
+  <style>
+    .autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+  .autocomplete-items {
+  position: absolute;
+  border: 1px solid #333333;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  opacity: 90%;
+  background-color: #000000;
+  border-bottom: 1px solid #333333;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #3f3d3d;
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+.loader {
+  border: px medium #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid blue;
+  border-right: 10px solid green;
+  border-bottom: 10px solid red;
+  border-left: 10px solid gold;
+  width: 60px;
+  height: 60px;
+  margin-left: 100px;
+ margin-top: 100px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+  </style>
+
+</head>
+
+<body style='height: 500px; width: 300px; background-color: #000000; font-family: "Source Sans Pro"; color: white;'>
+  <!-- <div id="chartContainer" style="height: 370px; width: 200px;"></div> -->
+  <div style="text-align:center;">
+      <img src="images/SnapSeek.png" style="padding:10px" width="60px" height="60px" alt="SnapSeek">
+  </div>
+  <form autocomplete="off" id="form" >
+  <!-- Search Bar -->
+<div style='border-bottom: 2px; border-bottom-color: black;'>
+  <div class="wrap">
+    <div class="search" style='width: 100%;
+                              position: relative;
+                              display: flex; padding: 10px;'>
+
+<div class="autocomplete">
+       <input type="text" id="word" name="myCountry"  class="searchTerm" placeholder="Search video by Keyword!" style='width: 100%;
+       border: 1px solid #0092bc;
+       border-right: none;
+       background-color: rgba(255, 255, 255, 0.2);
+       padding: 10px;
+       padding-left: 10px;
+       font-size: 17.5px;
+       font-family: "Source Sans Pro";
+       font-weight: 550;
+       color: #ffffff;
+       height: 41px;
+       border-radius: 10px 0 0 10px;
+       outline: none;
+       '>
+</div>
+       <button  type="submit" class="searchButton" style='width: 40px;
+       height: 41px;
+       border: 1px solid #0092bc;
+       background: #0092bc;
+       text-align: center;
+       color: #ffffff;
+       border-radius: 0 10px 10px 0;
+       cursor: pointer;
+       font-size: 20px;'>
+         <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<hr style="margin:10px">
+<div style='padding-top: 10px;padding-left: 10px; padding-right: 10px;'>
+  <ul class="nav nav-pills">
+    <li class="active" style='width: 137.5px; text-align: center;'><a data-toggle="pill" href="#timestamps"><strong>Timestamps</strong></a></li>
+    <li style='width: 137.5px; text-align: center;'><a data-toggle="pill" href="#sentiment"><strong>Sentiment</strong></a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="timestamps" class="tab-pane fade in active">
+      <h3 style='font-family: "Source Sans Pro"; color: white;'>Timestamps</h3>
+      <p style='font-family: "Source Sans Pro"; color: white;'>Get the phrases and the corresponding timestamps!</p>
+
+      <table id="table" class="table responsive">
+        <thead>
+          <tr>
+            <th style='font-family: "Source Sans Pro"; color: white; '>Phrase</th>
+            <th style='font-family: "Source Sans Pro"; color: white; '>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody id='tbody'>
+        </tbody>
+      </table>
+      <span id='not-found'></span>
+    </div>
+    <div id="sentiment" class="tab-pane fade">
+
+        <h3 style='font-family: "Source Sans Pro"; color: white;'>Sentiment</h3>
+        <p style='font-family: "Source Sans Pro"; color: white;'>Get the sentiment of the word searched!</p>
+        <span id='not-found1'></span>
+        <div style="text-align: center;">            
+              <div  id="chartContainer" style="margin-left:10px;height: 270px; width: 270px; position: absolute;"></div>
+              <div class="loader" id ="spinner" style="position: absolute;"></div>
+            
+          </div>
+
+    </div>
+  </div>
+</div>
+</form>
+    <!-- <input type="text" id="word"><br> -->
+    <!-- <input id="submit" type="submit" value="Submit"> -->
+
+
+    <!-- <button id="changeColor1"></button> -->
+    <script src="popup.js"></script>
+    <script src="sentiment.js"></script>
+  </body>
+</html>
